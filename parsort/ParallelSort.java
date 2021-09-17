@@ -18,15 +18,14 @@ public class ParallelSort<T extends Comparable<T>> {
         this.comparator = comparator;
     }
 
-
     Comparator<T> comparator;
     List<T> temp;
     List<T> vals;
 
     List<T> sort() {
         for (int step = 1; step < vals.size(); step *= 2) {
-            for (int i = 0; (i+1) * step < vals.size(); i+=2) {
-                mergeRange(i * step, (i+1) * step, (i+2) * step);
+            for (int i = 0; (i + 1) * step < vals.size(); i += 2) {
+                mergeRange(i * step, (i + 1) * step, (i + 2) * step);
             }
         }
         return vals;
@@ -52,11 +51,9 @@ public class ParallelSort<T extends Comparable<T>> {
         }
     }
 
-
     public String toString() {
         return vals.stream().map(Object::toString).collect(Collectors.joining(", "));
     }
-
 
     public static boolean test(int arraySize) {
         Random rd = new Random();
@@ -78,10 +75,10 @@ public class ParallelSort<T extends Comparable<T>> {
         return results.stream().allMatch(Predicate.isEqual(true));
     }
 
-
     public static void setLog(boolean log) {
         ParallelSort.log = log;
     }
+
     static void log(Object msg) {
         if (log) {
             System.out.println(msg);
